@@ -33,22 +33,12 @@ pub fn roll(rate: i32) -> RollRes {
             } else {
                 Regular
             },
-            if (1..=100).contains(&rate) && point == 1 {
-                true
-            } else {
-                false
-            },
+            (1..=100).contains(&rate) && point == 1,
         )
     } else {
         Fail(
             point,
-            if (1..50).contains(&rate) && point > 95 {
-                true
-            } else if (51..=100).contains(&rate) && point == 100 {
-                true
-            } else {
-                false
-            },
+            ((1..50).contains(&rate) && point > 95) || ((51..=100).contains(&rate) && point == 100),
         )
     }
 }
